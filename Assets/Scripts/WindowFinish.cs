@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class WindowFinish : MonoBehaviour
 {
     [SerializeField] private Button buttonNextLevel = null;
+
     void Start()
     {
         buttonNextLevel.onClick.AddListener(OnNextLevelClicked);

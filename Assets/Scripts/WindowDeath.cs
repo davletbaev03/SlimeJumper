@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class WindowDeath : MonoBehaviour
 {
     [SerializeField] private Button buttonRestart = null;
     [SerializeField] private Button buttonExit = null;
+    [SerializeField] public TextMeshProUGUI deathFromText = null;
     private bool isActive = false;
 
     public bool IsActive

@@ -11,6 +11,8 @@ public class WindowStart : MonoBehaviour
     [SerializeField] private WindowInfo windowInfo = null;
     private bool isActive = true;
 
+    public System.Action OnStartClick = null;
+
     public bool IsActive
     {
         get { return isActive; }
@@ -27,6 +29,7 @@ public class WindowStart : MonoBehaviour
 
     private void OnStartClicked()
     {
+        OnStartClick?.Invoke();
         isActive = false;
         SetState(isActive);
     }
