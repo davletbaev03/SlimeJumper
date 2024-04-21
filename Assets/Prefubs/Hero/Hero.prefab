@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6645227088890340039}
   - component: {fileID: -7055207063944635052}
   - component: {fileID: 603724802449587683}
+  - component: {fileID: 7526244680236387281}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -174,6 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eaf58ebdd442c24e8607d70973caa02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AudioSource: {fileID: 0}
+  m_AudioClip: {fileID: 0}
   jumpForce: {x: 0, y: 9000}
   dashForce: {x: 8000, y: 0}
   maxDashDuration: 0.5
@@ -183,6 +186,26 @@ MonoBehaviour:
   windowDeath: {fileID: 0}
   windowStart: {fileID: 0}
   windowFinish: {fileID: 0}
+--- !u!95 &7526244680236387281
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6645227088890340040}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c95cb4e3904d0894dbd1084242c8ac08, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7066134258695234174
 GameObject:
   m_ObjectHideFlags: 0

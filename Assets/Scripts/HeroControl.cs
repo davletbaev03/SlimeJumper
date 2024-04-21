@@ -9,7 +9,9 @@ public class HeroControl : MonoBehaviour
 {
     [SerializeField] private AudioSource m_AudioSource;
     [SerializeField] private AudioClip m_AudioClip;
-    
+
+    [SerializeField] private Animator animator;
+
     [SerializeField] private Vector2 jumpForce = new Vector2(0, 350);
     [SerializeField] private Vector2 dashForce = new Vector2(200, 0);
     [SerializeField] private float maxDashDuration = 0.3f;//максимальная длительность рывка
@@ -26,7 +28,7 @@ public class HeroControl : MonoBehaviour
 
     private float spaceDownTime;
     private bool isSpaceDown = false;
-    private bool canJump = false;//булька, чтобы прыжок не выполнялся много раз пока персонаж не успел оторваться от земли
+    private bool canJump = true;//булька, чтобы прыжок не выполнялся много раз пока персонаж не успел оторваться от земли
 
     
 
@@ -36,7 +38,10 @@ public class HeroControl : MonoBehaviour
     }
     void Update()
     {
+        animator.SetBool("canJump", canJump);
         CheckSpaceKey(KeyCode.Space);
+        
+        animator.SetBool("isDashed", isSpaceDown);
 
         if (Input.GetKeyUp(KeyCode.Space))
             isSpaceDown = false;
@@ -52,7 +57,6 @@ public class HeroControl : MonoBehaviour
         if(canJump && (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay)) 
         {
             Debug.LogError("Jump");
-            canJump = false;
             rb.AddForce(jumpForce);
             jumpTime = DateTime.Now;
         }
@@ -146,10 +150,12 @@ public class HeroControl : MonoBehaviour
         {
             case "Platform":
                 Debug.LogError("platform lose");
+                canJump = false;
                 break;
 
             case "Enemy":
                 Debug.LogError("skill gain");
+                canJump = false;
                 break;
         }
     }

@@ -1564,7 +1564,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1646,6 +1646,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &479317710 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7526244680236387281, guid: d035aba96351044478864e4361d6b8af, type: 3}
+  m_PrefabInstance: {fileID: 6645227088735242015}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &518620822
 GameObject:
   m_ObjectHideFlags: 0
@@ -7693,6 +7698,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 120236924315458526, guid: a7f018e6a3d2207448b9320700427994, type: 3}
+      propertyPath: m_Pitch
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 3866653425192036159, guid: a7f018e6a3d2207448b9320700427994, type: 3}
       propertyPath: m_EdgeRadius
       value: 0
@@ -7703,11 +7712,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4138933252310948334, guid: a7f018e6a3d2207448b9320700427994, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.66
+      value: 8.74
       objectReference: {fileID: 0}
     - target: {fileID: 4138933252310948334, guid: a7f018e6a3d2207448b9320700427994, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.19
+      value: -1.41
       objectReference: {fileID: 0}
     - target: {fileID: 4138933252310948334, guid: a7f018e6a3d2207448b9320700427994, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7767,8 +7776,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 603724802449587683, guid: d035aba96351044478864e4361d6b8af, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 479317710}
+    - target: {fileID: 603724802449587683, guid: d035aba96351044478864e4361d6b8af, type: 3}
       propertyPath: dashDelay
       value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 603724802449587683, guid: d035aba96351044478864e4361d6b8af, type: 3}
+      propertyPath: dashForce.x
+      value: 8000
       objectReference: {fileID: 0}
     - target: {fileID: 603724802449587683, guid: d035aba96351044478864e4361d6b8af, type: 3}
       propertyPath: jumpForce.y
