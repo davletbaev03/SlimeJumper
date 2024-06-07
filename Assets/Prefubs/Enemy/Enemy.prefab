@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2799963903764513470}
   - component: {fileID: 7672116952810342865}
   - component: {fileID: 120236924315458526}
+  - component: {fileID: 6451844588165648010}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -150,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AudioSource: {fileID: 120236924315458526}
   m_AudioClip: {fileID: 8300000, guid: 21b0ec0a555f0624ba9f21ac0ed528ee, type: 3}
+  animator: {fileID: 6451844588165648010}
   jumpForce: {x: 0, y: 8000}
   timeToJump: 5
   minTimeToJump: 1
@@ -276,3 +278,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6451844588165648010
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395136903531377761}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 603f9259c1050d84994258bf7968e2dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

@@ -28,7 +28,7 @@ public class HeroControl : MonoBehaviour
 
     private float spaceDownTime;
     private bool isSpaceDown = false;
-    private bool canJump = true;//булька, чтобы прыжок не выполнялся много раз пока персонаж не успел оторваться от земли
+    [SerializeField] private bool canJump = true;//булька, чтобы прыжок не выполнялся много раз пока персонаж не успел оторваться от земли
 
     
 
@@ -54,14 +54,13 @@ public class HeroControl : MonoBehaviour
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-        if(canJump && (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay)) 
+        if (canJump && (Input.GetKeyDown(key) || (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay)))
         {
             Debug.LogError("Jump");
             rb.AddForce(jumpForce);
             jumpTime = DateTime.Now;
         }
-
-        if (Input.GetKeyDown(key) && (DateTime.Now - dashTime) > TimeSpan.FromSeconds(dashDelay))
+        else if (Input.GetKeyDown(key) && (DateTime.Now - dashTime) > TimeSpan.FromSeconds(dashDelay))
         {
             isSpaceDown = true;
             Debug.LogError("Dash");
@@ -101,10 +100,18 @@ public class HeroControl : MonoBehaviour
     {
         switch (collision.gameObject.tag)
         {
-            case "Enemy":
+            case "Fireball":
                 //TODO DeathAnimation
                 Debug.LogError("skill issue");
                 windowDeath.deathFromText.text = "Голова-глаза";
+                windowDeath.IsActive = true;
+                m_AudioSource.Stop();
+                windowDeath.SetState(true);
+                break;
+            case "Enemy":
+                //TODO DeathAnimation
+                Debug.LogError("skill issue");
+                windowDeath.deathFromText.text = "Голова-темя";
                 windowDeath.IsActive = true;
                 m_AudioSource.Stop();
                 windowDeath.SetState(true);

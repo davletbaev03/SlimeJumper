@@ -8,6 +8,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private AudioSource m_AudioSource;
     [SerializeField] private AudioClip m_AudioClip;
 
+    [SerializeField] private Animator animator;
+
     [SerializeField] private Vector2 jumpForce = new Vector2(0f,900f);
     [SerializeField] private float timeToJump = 1f;
     [SerializeField] private float minTimeToJump = 1f;
@@ -18,7 +20,12 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         if (DateTime.Now - jumpTime > TimeSpan.FromSeconds(timeToJump))
+        {
             EnemyJump();
+            animator.SetBool("isJumped", true);
+        }
+        if (DateTime.Now - jumpTime > TimeSpan.FromSeconds(0.3f))
+            animator.SetBool("isJumped", false);
     }
 
     private void EnemyJump()

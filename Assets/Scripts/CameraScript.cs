@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour
     private void Start()
     {
         heroControl = GameObject.FindGameObjectWithTag("Player");
-        this.transform.position = new Vector3(heroControl.transform.position.x + 1.3f, 3f, -10f);
+        this.transform.position = new Vector3(heroControl.transform.position.x + 1.3f,  3f, -10f);
     }
 
     private void Update()

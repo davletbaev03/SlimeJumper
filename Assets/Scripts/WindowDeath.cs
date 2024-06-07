@@ -11,6 +11,7 @@ public class WindowDeath : MonoBehaviour
     [SerializeField] private Button buttonRestart = null;
     [SerializeField] private Button buttonExit = null;
     [SerializeField] public TextMeshProUGUI deathFromText = null;
+    [SerializeField] private string level = null;
     private bool isActive = false;
 
     public bool IsActive
@@ -28,7 +29,7 @@ public class WindowDeath : MonoBehaviour
     {
         isActive = false;
         SetState(isActive);
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene($"{level}");
     }
 
     private void OnExitClicked()
