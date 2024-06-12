@@ -23,7 +23,6 @@ public class HeroControl : MonoBehaviour
     private DateTime dashTime = DateTime.Now;
 
     [SerializeField] private WindowDeath windowDeath = null;
-    [SerializeField] private WindowStart windowStart = null;
     [SerializeField] private WindowFinish windowFinish = null;
 
     private float spaceDownTime;
@@ -34,14 +33,12 @@ public class HeroControl : MonoBehaviour
 
     private void Start()
     {
-        windowStart.OnStartClick += PlayLevelSound;
+        PlayLevelSound();
     }
     void Update()
     {
         animator.SetBool("canJump", canJump);
         CheckSpaceKey(KeyCode.Space);
-        
-        animator.SetBool("isDashed", isSpaceDown);
 
         if (Input.GetKeyUp(KeyCode.Space))
             isSpaceDown = false;
@@ -49,12 +46,12 @@ public class HeroControl : MonoBehaviour
 
     private void CheckSpaceKey(KeyCode key)
     {
-        if (windowDeath.IsActive || windowStart.IsActive)
+        if (windowDeath!= null && windowDeath.IsActive)
             return;
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-        if (canJump && (Input.GetKeyDown(key) || (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay)))
+        if (canJump && (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay))
         {
             Debug.LogError("Jump");
             rb.AddForce(jumpForce);
@@ -62,6 +59,7 @@ public class HeroControl : MonoBehaviour
         }
         else if (Input.GetKeyDown(key) && (DateTime.Now - dashTime) > TimeSpan.FromSeconds(dashDelay))
         {
+            animator.SetBool("isDashed", isSpaceDown);
             isSpaceDown = true;
             Debug.LogError("Dash");
             spaceDownTime = Time.time;
@@ -93,7 +91,8 @@ public class HeroControl : MonoBehaviour
 
     private void PlayLevelSound()
     {
-        m_AudioSource.PlayOneShot(m_AudioClip, 0.5f);
+        if(m_AudioSource != null)
+            m_AudioSource.PlayOneShot(m_AudioClip, 0.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

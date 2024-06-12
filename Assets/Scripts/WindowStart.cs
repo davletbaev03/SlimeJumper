@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WindowStart : MonoBehaviour
@@ -9,9 +10,8 @@ public class WindowStart : MonoBehaviour
     [SerializeField] private Button buttonExit = null;
     [SerializeField] private Button buttonInfo = null;
     [SerializeField] private WindowInfo windowInfo = null;
+    [SerializeField] int nextLevel = 1;
     private bool isActive = true;
-
-    public System.Action OnStartClick = null;
 
     public bool IsActive
     {
@@ -19,8 +19,7 @@ public class WindowStart : MonoBehaviour
         set { isActive = value; }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         buttonStart.onClick.AddListener(OnStartClicked);
         buttonExit.onClick.AddListener(OnExitClicked);
@@ -29,9 +28,7 @@ public class WindowStart : MonoBehaviour
 
     private void OnStartClicked()
     {
-        OnStartClick?.Invoke();
-        isActive = false;
-        SetState(isActive);
+        SceneManager.LoadScene($"Level {nextLevel}");
     }
 
     private void OnExitClicked()

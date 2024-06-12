@@ -183,11 +183,12 @@ MonoBehaviour:
   dashForce: {x: 8000, y: 0}
   maxDashDuration: 0.3
   gravityScale: 5
-  jumpDelay: 1.5
+  jumpDelay: 1
   dashDelay: 0.35
   windowDeath: {fileID: 0}
   windowStart: {fileID: 0}
   windowFinish: {fileID: 0}
+  canJump: 1
 --- !u!95 &7526244680236387281
 Animator:
   serializedVersion: 5

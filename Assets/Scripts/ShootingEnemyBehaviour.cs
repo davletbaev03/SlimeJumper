@@ -40,9 +40,6 @@ public class ShootingEnemyBehaviour : MonoBehaviour
     {
         fireball.transform.position = transform.position;
 
-        
-        
-
         timeToShoot = UnityEngine.Random.Range(minTimeToShoot, maxTimeToShoot);
         shotTime = DateTime.Now;
         

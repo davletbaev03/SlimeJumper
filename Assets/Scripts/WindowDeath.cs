@@ -34,7 +34,7 @@ public class WindowDeath : MonoBehaviour
 
     private void OnExitClicked()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void SetState(bool state)
