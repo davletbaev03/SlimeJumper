@@ -41,7 +41,11 @@ public class HeroControl : MonoBehaviour
         CheckSpaceKey(KeyCode.Space);
 
         if (Input.GetKeyUp(KeyCode.Space))
+        {
             isSpaceDown = false;
+            animator.SetBool("isDashed", isSpaceDown);
+        }    
+           
     }
 
     private void CheckSpaceKey(KeyCode key)
@@ -53,15 +57,15 @@ public class HeroControl : MonoBehaviour
 
         if (canJump && (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay))
         {
-            Debug.LogError("Jump");
+            //Debug.LogError("Jump");
             rb.AddForce(jumpForce);
             jumpTime = DateTime.Now;
         }
         else if (Input.GetKeyDown(key) && (DateTime.Now - dashTime) > TimeSpan.FromSeconds(dashDelay))
         {
-            animator.SetBool("isDashed", isSpaceDown);
             isSpaceDown = true;
-            Debug.LogError("Dash");
+            animator.SetBool("isDashed", isSpaceDown);
+            //Debug.LogError("Dash");
             spaceDownTime = Time.time;
             rb.velocity = Vector2.zero;
             rb.AddForce(dashForce);
@@ -101,7 +105,7 @@ public class HeroControl : MonoBehaviour
         {
             case "Fireball":
                 //TODO DeathAnimation
-                Debug.LogError("skill issue");
+                //Debug.LogError("skill issue");
                 windowDeath.deathFromText.text = "Голова-глаза";
                 windowDeath.IsActive = true;
                 m_AudioSource.Stop();
@@ -109,7 +113,7 @@ public class HeroControl : MonoBehaviour
                 break;
             case "Enemy":
                 //TODO DeathAnimation
-                Debug.LogError("skill issue");
+                //Debug.LogError("skill issue");
                 windowDeath.deathFromText.text = "Голова-темя";
                 windowDeath.IsActive = true;
                 m_AudioSource.Stop();
@@ -117,7 +121,7 @@ public class HeroControl : MonoBehaviour
                 break;
             case "DeathZone":
                 //TODO DeathAnimation
-                Debug.LogError("skill issue");
+                //Debug.LogError("skill issue");
                 windowDeath.deathFromText.text = "Пропал без вести";
                 windowDeath.IsActive = true;
                 m_AudioSource.Stop();
@@ -125,7 +129,7 @@ public class HeroControl : MonoBehaviour
                 break;
 
             case "Finish":
-                Debug.LogError("LevelComplete");
+                //Debug.LogError("LevelComplete");
                 m_AudioSource.Stop();
                 windowFinish.SetState(true);
                 break;
@@ -139,7 +143,7 @@ public class HeroControl : MonoBehaviour
         switch (tag)
         {
             case "Platform":
-                Debug.LogError("platform");
+                //Debug.LogError("platform");
                 canJump = true;
                 break;
 
@@ -155,12 +159,12 @@ public class HeroControl : MonoBehaviour
         switch (tag)
         {
             case "Platform":
-                Debug.LogError("platform lose");
+                //Debug.LogError("platform lose");
                 canJump = false;
                 break;
 
             case "Enemy":
-                Debug.LogError("skill gain");
+                //Debug.LogError("skill gain");
                 canJump = false;
                 break;
         }

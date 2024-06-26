@@ -50,7 +50,7 @@ public class ShootingEnemyBehaviour : MonoBehaviour
         if(collision.gameObject.tag == "DeathZone")
         {
             m_AudioSource.PlayOneShot(m_AudioClip, 0.5f);
-            Debug.LogError("Enemy death");
+            //Debug.LogError("Enemy death");
             //TODO enemy death animation
         }
     }
