@@ -26,7 +26,7 @@ public class HeroControl : MonoBehaviour
     [SerializeField] private WindowFinish windowFinish = null;
 
     private float spaceDownTime;
-    private bool isSpaceDown = false;
+    private bool isDashKeyDown = false;
     [SerializeField] private bool canJump = true;//булька, чтобы прыжок не выполн€лс€ много раз пока персонаж не успел оторватьс€ от земли
 
     
@@ -38,17 +38,17 @@ public class HeroControl : MonoBehaviour
     void Update()
     {
         animator.SetBool("canJump", canJump);
-        CheckSpaceKey(KeyCode.Space);
+        CheckDashKey(KeyCode.Mouse0);
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            isSpaceDown = false;
-            animator.SetBool("isDashed", isSpaceDown);
+            isDashKeyDown = false;
+            animator.SetBool("isDashed", isDashKeyDown);
         }    
            
     }
 
-    private void CheckSpaceKey(KeyCode key)
+    private void CheckDashKey(KeyCode key)
     {
         if (windowDeath!= null && windowDeath.IsActive)
             return;
@@ -63,8 +63,8 @@ public class HeroControl : MonoBehaviour
         }
         else if (Input.GetKeyDown(key) && (DateTime.Now - dashTime) > TimeSpan.FromSeconds(dashDelay))
         {
-            isSpaceDown = true;
-            animator.SetBool("isDashed", isSpaceDown);
+            isDashKeyDown = true;
+            animator.SetBool("isDashed", isDashKeyDown);
             //Debug.LogError("Dash");
             spaceDownTime = Time.time;
             rb.velocity = Vector2.zero;
@@ -78,10 +78,12 @@ public class HeroControl : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         // ќтключаем гравитацию
+        float velocityY = rb.velocity.y;
+        rb.velocity = new Vector2(rb.velocity.x,0f);
         rb.gravityScale = 0;
 
         // ∆дем заданное врем€
-        while (isSpaceDown)
+        while (isDashKeyDown)
         {
             if (Time.time - spaceDownTime > maxDashDuration)
                 break;
@@ -90,7 +92,7 @@ public class HeroControl : MonoBehaviour
 
         // ¬ключаем гравитацию после заданного времени
         rb.gravityScale = gravityScale;
-        rb.velocity = Vector2.zero;
+        rb.velocity = new Vector2(0, velocityY);
     }
 
     private void PlayLevelSound()
