@@ -6600,6 +6600,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 603724802449587683, guid: d035aba96351044478864e4361d6b8af, type: 3}
+      propertyPath: canClimb
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 603724802449587683, guid: d035aba96351044478864e4361d6b8af, type: 3}
       propertyPath: windowDeath
       value: 
       objectReference: {fileID: 718778073}

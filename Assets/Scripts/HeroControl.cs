@@ -17,7 +17,7 @@ public class HeroControl : MonoBehaviour
     [SerializeField] private float maxDashDuration = 0.3f;//максимальная длительность рывка
     [SerializeField] private float gravityScale = 5f;//сила гравитации
 
-    [SerializeField] private float jumpDelay = 1.5f;//задержка прыжка
+    [SerializeField] private float jumpDelay = 1f;//задержка прыжка
     private DateTime jumpTime = DateTime.Now;
     [SerializeField] private float dashDelay = 0.3f;//задержка рывка
     private DateTime dashTime = DateTime.Now;
@@ -28,8 +28,8 @@ public class HeroControl : MonoBehaviour
     private float spaceDownTime;
     private bool isDashKeyDown = false;
     [SerializeField] private bool canJump = true;//булька, чтобы прыжок не выполнялся много раз пока персонаж не успел оторваться от земли
+    [SerializeField] private bool canClimb = false;
 
-    
 
     private void Start()
     {
@@ -55,7 +55,8 @@ public class HeroControl : MonoBehaviour
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-        if (canJump && (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay))
+        if ((canClimb && Input.GetKeyDown(key)) ||  
+             canJump && !canClimb  && (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay))
         {
             //Debug.LogError("Jump");
             rb.AddForce(jumpForce);
@@ -145,12 +146,13 @@ public class HeroControl : MonoBehaviour
         switch (tag)
         {
             case "Platform":
-                //Debug.LogError("platform");
+            case "Enemy":
                 canJump = true;
                 break;
 
-            case "Enemy":
-                canJump = true;
+            case "ClimbablePlatform":
+                Debug.LogError("climb");
+                canClimb = true;
                 break;
         }
     }
@@ -160,14 +162,13 @@ public class HeroControl : MonoBehaviour
         string tag = collision.gameObject.tag;
         switch (tag)
         {
+            case "Enemy":
             case "Platform":
-                //Debug.LogError("platform lose");
                 canJump = false;
                 break;
 
-            case "Enemy":
-                //Debug.LogError("skill gain");
-                canJump = false;
+            case "ClimbablePlatform":
+                canClimb = false;
                 break;
         }
     }
