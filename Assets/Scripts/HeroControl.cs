@@ -55,10 +55,11 @@ public class HeroControl : MonoBehaviour
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-        if ((canClimb && Input.GetKeyDown(key)) ||  
+        if ((canClimb && (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay - 0.8f)) ||  
              canJump && !canClimb  && (DateTime.Now - jumpTime) > TimeSpan.FromSeconds(jumpDelay))
         {
             //Debug.LogError("Jump");
+            rb.velocity = Vector2.zero;
             rb.AddForce(jumpForce);
             jumpTime = DateTime.Now;
         }

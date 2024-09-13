@@ -17,11 +17,12 @@ public class ShootingEnemyBehaviour : MonoBehaviour
     [SerializeField] private DateTime shotTime = DateTime.Now;
     [SerializeField] private GameObject fireball = null;
     [SerializeField] private Vector2 fireballVelocity = new Vector2(-400,0);
-
+    private TrailRenderer []trail = new TrailRenderer[2];
 
     private void Start()
     {
         fireball = Instantiate(fireball, transform.position, Quaternion.identity);
+        trail = fireball.GetComponentsInChildren<TrailRenderer>();
         Rigidbody2D fireballRB = fireball.GetComponent<Rigidbody2D>();
         fireballRB.AddForce(fireballVelocity);
     }
@@ -30,15 +31,17 @@ public class ShootingEnemyBehaviour : MonoBehaviour
         if (DateTime.Now - shotTime > TimeSpan.FromSeconds(timeToShoot))
         {
             ThrowFireball();
-            //animator.SetBool("isJumped", true);
         }
-        //if (DateTime.Now - jumpTime > TimeSpan.FromSeconds(0.3f))
-        //    animator.SetBool("isJumped", false);
     }
 
     private void ThrowFireball()
     {
         fireball.transform.position = transform.position;
+        if (trail != null)
+        {
+            trail[0].Clear();
+            trail[1].Clear();
+        }
 
         timeToShoot = UnityEngine.Random.Range(minTimeToShoot, maxTimeToShoot);
         shotTime = DateTime.Now;
