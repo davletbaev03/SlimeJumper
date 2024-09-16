@@ -8,7 +8,13 @@ public class WindowFinish : MonoBehaviour
 {
     [SerializeField] private Button buttonNextLevel = null;
     [SerializeField] int nextLevel = 1;
+    private bool isActive = false;
 
+    public bool IsActive
+    {
+        get { return isActive; }
+        set { isActive = value; }
+    }
     void Start()
     {
         buttonNextLevel.onClick.AddListener(OnNextLevelClicked);
@@ -16,8 +22,8 @@ public class WindowFinish : MonoBehaviour
 
     private void OnNextLevelClicked()
     {
-        
-        SetState(false);
+        isActive = false;
+        SetState(isActive);
         SceneManager.LoadScene($"Level {nextLevel}");
         
     }

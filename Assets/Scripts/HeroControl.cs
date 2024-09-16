@@ -50,7 +50,7 @@ public class HeroControl : MonoBehaviour
 
     private void CheckDashKey(KeyCode key)
     {
-        if (windowDeath!= null && windowDeath.IsActive)
+        if (windowDeath != null && windowDeath.IsActive || windowFinish.IsActive && windowFinish != null)
             return;
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -135,6 +135,7 @@ public class HeroControl : MonoBehaviour
             case "Finish":
                 //Debug.LogError("LevelComplete");
                 m_AudioSource.Stop();
+                windowFinish.IsActive = true;
                 windowFinish.SetState(true);
                 break;
         }
